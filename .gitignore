@@ -23,7 +23,9 @@ mother_linux/
 
 # ===== 依赖 / 缓存 / 备份 / 日志 =====
 node_modules/
+*.bak
 *.bak.*
+*.bak-*
 *.log
 *.pid
 eagle-setup/
