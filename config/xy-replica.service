@@ -1,0 +1,25 @@
+[Unit]
+Description=Eagle Panel Node Backend
+After=network.target
+
+[Service]
+WorkingDirectory=/root/eagle_node
+EnvironmentFile=-/root/eagle_node/.env
+ExecStart=/usr/bin/node --no-warnings /root/eagle_node/server.js
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+
+# ---- 沙箱 ----
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=false
+ReadWritePaths=/root /var/www/eagle_php /tmp
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+{
+  "name": "eagle-panel-node",
+  "version": "1.1.0",
+  "description": "花木工作室 Node 后端（纯 Node，无 Python 依赖）：HTTP API / agent 接入 / 无线调试桥",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check routes.js && node --check zhuque.js && node --check eagle.js && node --check bridge.js"
+  },
+  "dependencies": {
+    "ws": "^8.17.0",
+    "undici": "^6.19.8"
+  }
+}

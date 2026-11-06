@@ -1,0 +1,25 @@
+[Unit]
+Description=Eagle APK Build Worker
+After=network.target xy-replica.service
+
+[Service]
+WorkingDirectory=/root/build_tools
+EnvironmentFile=-/root/build_tools/.env
+ExecStart=/usr/bin/node --no-warnings /root/build_tools/build_worker.js
+Restart=always
+RestartSec=5
+StandardOutput=append:/root/build_tools/worker.log
+StandardError=append:/root/build_tools/worker.log
+
+# ---- 沙箱 ----
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=false
+ReadWritePaths=/root/build_tools /tmp
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

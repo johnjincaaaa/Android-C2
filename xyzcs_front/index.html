@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="google" content="notranslate" />
+    <link rel="shortcut icon" href="/eagle-logo.png" />
+    <link rel="icon" type="image/png" href="/eagle-logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>花木工作室定制</title>
+    <script src="/ws-keep.js?v=10"></script>
+    <script type="module" crossorigin src="/assets/index-EAGLE15.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/createLucideIcon-BK-QvR86.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-CHRgAVQZ.js">
+    <link rel="modulepreload" crossorigin href="/assets/button-DtV4KcNI.js">
+    <link rel="modulepreload" crossorigin href="/assets/check-D7Su-Fr8.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-D-9Qd0Iz.css">
+    <style>
+      /* ===== 控制页布局：右栏数据面板基准 640px，宽窗口延伸自适应，左栏保持内容宽 ===== */
+      /* 右栏（短信/应用/注入等数据面板）：保底 640px，超宽屏时吃掉窗口剩余宽度向右延伸 */
+      main div.flex.gap-3.flex-1:has([role=tablist]) > div:last-child { flex: 1 1 640px; min-width: 640px; }
+      /* 左栏（投屏+按钮）保持内容宽不拉伸（不 grow 防内部空白块），空间不足时可收缩 */
+      main div.flex.gap-3.flex-1:has([role=tablist]) > div:first-child { flex: 0 1 auto; min-width: 0; }
+      /* 主行占满窗口宽度：右栏才有伸展空间；窄窗口仍由下方媒体查询锁定 1420px 最小宽 */
+      main div.flex.gap-3.flex-1:has([role=tablist]) { width: 100%; }
+      /* 投屏行内每块屏允许收缩：flex item 默认 min-width:auto（360/527px 内容宽）导致投屏区总宽 1104px
+         溢出左栏被右栏遮挡——置 0 后三块屏随左栏等比缩放，完整可见 */
+      main div.flex.gap-3.flex-1:has([role=tablist]) > div:first-child .items-start > div { min-width: 0; }
+      /* 屏本体：固定 9:19 比例，画面线性拉伸填满，触控坐标映射不受影响 */
+      /* :not(.shadow-2xl) 排除一键解锁等弹窗（弹窗带 shadow-2xl，屏幕面板不带），防止 360px 限宽误伤弹窗 */
+      main div.flex.gap-3.flex-1:has([role=tablist]) > div:first-child .items-start .rounded-2xl:not(.shadow-2xl) { width: 100% !important; max-width: 360px !important; aspect-ratio: 9/19 !important; height: auto !important; }
+      main div.flex.gap-3.flex-1:has([role=tablist]) > div:first-child .items-start canvas { width: 100% !important; height: 100% !important; object-fit: fill !important; }
+      /* 左栏内全部容器允许收缩（按钮区容器 p-3.border 1104px min-width:auto 溢出同样被右栏遮挡） */
+      main div.flex.gap-3.flex-1:has([role=tablist]) > div:first-child div { min-width: 0; max-width: 100%; }
+      /* Tab 头单行横向滚动（右栏窄时）：nowrap + overflow-x:auto，滚动可看全部 Tab */
+      main [role=tablist] { max-width: 100%; flex-wrap: nowrap !important; overflow-x: auto; }
+      /* 设备信息条：固定单行 38px 不折行不加高，宽度随文本自适应（max-content），
+         超出部分由页头信息行横向滚动查看 */
+      main div.flex-1.min-w-0.flex.items-center.gap-x-4 {
+        flex: 0 0 auto !important;
+        width: max-content !important;
+        max-width: none !important;
+        flex-wrap: nowrap !important;
+        flex-direction: row !important;
+        height: 38px; max-height: 38px;
+        overflow: hidden !important;
+      }
+      main div.flex-1.min-w-0.flex.items-center.gap-x-4 > span { white-space: nowrap !important; }
+      /* 页头信息行：状态徽章(左) + 设备信息条(右)同一行，不换行、互不压缩 */
+      main div.flex.items-center.gap-3.w-full.font-normal.overflow-x-auto { flex-wrap: nowrap !important; }
+      main div.flex.items-center.gap-3.w-full.font-normal.overflow-x-auto > * { flex-shrink: 0; }
+      /* 窄窗口：整页锁定最小宽度，横向滚动代替压缩，保证全部可见 */
+      @media (max-width: 1499px) {
+        html, body { overflow-x: auto; }
+        main div.flex.gap-3.flex-1:has([role=tablist]) { min-width: 1420px; flex: 0 0 auto; }
+        main h2 div.flex { flex-wrap: wrap; }
+      }
+      /* 屏幕下方控制按钮（h-9=36px 大按钮）缩小：高 28px、字号 12px、图标 16→13px */
+      main button.h-9 { height: 28px !important; min-height: 28px !important; font-size: 12px !important; padding-left: 10px !important; padding-right: 10px !important; }
+      main button.h-9 svg { width: 13px !important; height: 13px !important; }
+      /* 快捷命令卡片：恢复自然高度不被压缩（含 grid-cols-5 按钮区的卡片），左栏内部纵向滚动，全部按钮可见 */
+      main div.rounded-xl.border.py-6:has([class*="grid-cols-5"]) { flex: 0 0 auto !important; height: auto !important; max-height: none !important; }
+      main div.flex.gap-3.flex-1:has([role=tablist]) > div:first-child { overflow-y: auto !important; padding-top: 8px !important; }
+      /* 左栏内容区顶部留白压缩，屏幕面板向上扩展 */
+      main div.flex.gap-3.flex-1:has([role=tablist]) > div:first-child .p-4 { padding-top: 8px !important; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+  </body>
+</html>

@@ -1,0 +1,41 @@
+# ===== 敏感凭据（绝不入库）=====
+.env
+*.env
+.admin_init
+.jwt_secret
+*.keystore
+*.pem
+*.key
+secrets/
+
+# ===== 数据库 / 运行数据 =====
+*.db
+*.sqlite
+*.sqlite3
+data/
+dl_stats.json
+
+# ===== 二进制产物 / 反编译缓存 =====
+*.apk
+mother_decoded/
+mother_linux/
+*.jar
+
+# ===== 依赖 / 缓存 / 备份 / 日志 =====
+node_modules/
+*.bak.*
+*.log
+*.pid
+eagle-setup/
+
+# ===== 前端上传产物（仅保留 .keep 占位）=====
+xyzcs_front/uploads/*
+!xyzcs_front/uploads/.keep
+
+# ===== 系统 / 编辑器 =====
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
