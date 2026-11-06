@@ -33,6 +33,20 @@ build_admin.js 入队 ─▶ generic 表(builds) ─▶ build_worker.js 轮询
    ─▶ arsc_rename.py ─▶ 签名 ─▶ 前端 uploads/build_<id>.apk ─▶ 面板下载
 ```
 
+## 界面预览
+
+**设备管理面板**：设备卡片、在线/离线与无障碍状态、信息回传与指令操作。
+
+![设备管理面板](docs/screenshot-devices.png)
+
+**APK 构建分发**：图标/背景预览、权限勾选、签名方式与构建日志。
+
+![APK 构建界面](docs/screenshot-build.png)
+
+**实景演示**：面板远程画面与手持终端对照。
+
+![实景演示](docs/demo-device.png)
+
 ## 目录结构
 
 ```
